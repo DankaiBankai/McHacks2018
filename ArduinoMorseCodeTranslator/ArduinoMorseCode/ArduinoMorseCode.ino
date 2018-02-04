@@ -4,14 +4,12 @@
  * reset LED connected to 10(+) and 8(-)
  * speakers connected to 2 and 4
  */
-#include <SoftwareSerial.h>
-SoftwareSerial Bluetooth(6,7);
 
- 
- //length of a unit
- #define UNIT 200 
- #define SPEAKER 2
- #define SPEAKERGROUND 4
+
+
+ #define UNIT 200 //Length of a time unit
+ #define SPEAKER 2 //The PIN 2 will activate the Speaker
+ #define SPEAKERGROUND 4 //The PIN 4 will act as GND for the Speaker
  
 void litAf(char morseCode){
   switch(morseCode){
@@ -72,21 +70,21 @@ void setup() {
   //pin 4 acts as GND for speaker
   digitalWrite(4, LOW);
   //Turn the Serial Protocol ON
-  Bluetooth.begin(9600);
-  //Serial.begin(9600);
+  Serial.begin(9600);
   
   
 }
 
 // the loop function runs over and over again forever
 void loop() {
-  
-//String text = Serial.readString() ;
-String text = Bluetooth.readString();
+//Takes the input from the serial monitor and puts it in the string variable "text"  
+String text = Serial.readString() ;
+
 
 String output = "";
 for(unsigned int i=0; i < text.length(); i++){
   char c = text.charAt(i);
+  //Respective morse code for every letter
   switch (c){
           case 'a': output.concat(".-l");
           break;
@@ -164,23 +162,16 @@ for(unsigned int i=0; i < text.length(); i++){
           break;
           }
   }
- /* while (text.length() > 0){*/
+  
+
     for (unsigned int i = 0; i < output.length(); i++){
-      //activates message LED 
+    //activates message LED to indicate the reading of a message
     digitalWrite(8, HIGH);
     //translates the code into light/sound outpouts
      litAf(output.charAt(i)) ;
     }
- /*       //activates higher note to signal end of message
-    tone(SPEAKER, 262, UNIT);
-    delay(1000);
-    digitalWrite(SPEAKER, LOW);
-  }*/
-
-
-  
-  
-  //deactivate message LED
+ 
+  //deactivate message LED to indicate the end of the message
   digitalWrite(8,LOW);
 
 }
