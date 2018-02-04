@@ -4,6 +4,10 @@
  * reset LED connected to 10(+) and 8(-)
  * speakers connected to 2 and 4
  */
+#include <SoftwareSerial.h>
+SoftwareSerial Bluetooth(6,7);
+
+ 
  //length of a unit
  #define UNIT 200 
  #define SPEAKER 2
@@ -68,14 +72,17 @@ void setup() {
   //pin 4 acts as GND for speaker
   digitalWrite(4, LOW);
   //Turn the Serial Protocol ON
-  Serial.begin(9600);
+  Bluetooth.begin(9600);
+  //Serial.begin(9600);
+  
   
 }
 
 // the loop function runs over and over again forever
 void loop() {
   
-  text = Serial.readString() ;
+//String text = Serial.readString() ;
+String text = Bluetooth.readString();
 
 String output = "";
 for(unsigned int i=0; i < text.length(); i++){
