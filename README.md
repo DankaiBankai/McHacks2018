@@ -7,5 +7,5 @@ A user enters a text through the serial monitor. The program then translates the
 ## Improvement
 When a project ends, we feel that it is important to celebrate our work, but it is also good practice to ask ourselves what we could have done to improve it.
 
-### Make it more user-friendly
+###### Make it more user-friendly
 As it is presently, the program requires the user to input a text message in the serial monitor of the Arduino IDE and then install the program onto the chip. We want to allow the user to input the text message through an app on their cellphone. Using Bluetooth technology might be interesting here.
