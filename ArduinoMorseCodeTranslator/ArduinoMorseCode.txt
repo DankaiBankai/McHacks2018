@@ -164,7 +164,7 @@ for(unsigned int i=0; i < text.length(); i++){
     //translates the code into light/sound outpouts
      litAf(output.charAt(i)) ;
     }
- /*       //activates higher note to signal end of message
+ /* //activates higher note to signal end of message
     tone(SPEAKER, 262, UNIT);
     delay(1000);
     digitalWrite(SPEAKER, LOW);
